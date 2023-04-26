@@ -24,16 +24,20 @@ function initializeGame() {
   })
 }
 
+function swapNames() {
+  const player1 = document.getElementById('player1').value;
+  const player2 = document.getElementById('player2').value;
+  document.getElementById('player1').value = player2;
+  document.getElementById('player2').value = player1;
+}
+
 // Troca os nomes dos jogadores
 const swapButton = document.getElementById('swapPlayers');
 
 swapButton.addEventListener('click', function (ev) {
-    ev.preventDefault();
-    const player1 = document.getElementById('player1').value;
-    const player2 = document.getElementById('player2').value;
-    document.getElementById('player1').value = player2;
-    document.getElementById('player2').value = player1;
-    initializeGame();
+  ev.preventDefault();
+  swapNames();
+  initializeGame();
 })
 
 // Verifica se existem três regiões iguais em sequência e devolve as regiões
@@ -68,7 +72,8 @@ function handleWin(regions) {
     document.querySelector('[data-region="' + region + '"]').classList.add('win')
   })
   const playerName = document.getElementById(turnPlayer).value
-  document.querySelector('h2').innerHTML = playerName + ' venceu!'
+  document.querySelector('h2').innerHTML = playerName + ' venceu!';
+  swapNames();
 }
 
 function handleBoardClick(ev) {
